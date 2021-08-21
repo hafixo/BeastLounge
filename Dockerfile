@@ -1,4 +1,4 @@
-FROM alpine:3.9 as base_build
+FROM alpine:latest as base_build
 
 RUN apk add --no-cache\
         git \
@@ -27,7 +27,7 @@ RUN cmake -G "Ninja" -H. -Bbuild \
 
 
 
-FROM alpine:3.9 as deployment
+FROM alpine:latest as deployment
 
 COPY --from=build /beast-lounge /beast-lounge
 COPY --from=build /root/tools/docker-run.sh /beast-lounge/bin/docker-run.sh
